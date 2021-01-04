@@ -21,7 +21,7 @@ public class Flight extends Hack{
 	public Flight() {
 		super("Flight", HackCategory.MOVEMENT);
 		
-		this.mode = new ModeValue("Mode", new Mode("Simple", true), new Mode("Dynamic", false), new Mode("Hypixel", false));
+		this.mode = new ModeValue("Mode", new Mode("Simple", true), new Mode("Dynamic", false), new Mode("Hypixel", false),new Mode("Jetpack",false));
 		
 		this.addValue(mode);
 	}
@@ -69,6 +69,11 @@ public class Flight extends Hack{
 	        if (Wrapper.INSTANCE.mcSettings().keyBindSneak.isKeyDown()) {
 	        	player.motionY -= flyspeed;
 	        }
+		}
+		else if (mode.getMode("Jetpack").isToggled()) 
+		{
+			if(Wrapper.INSTANCE.mcSettings().keyBindJump.isKeyDown())
+				Wrapper.INSTANCE.player().jump();
 		}
 		super.onClientTick(event);
 	}
